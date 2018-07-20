@@ -31,13 +31,8 @@ function! verbosity#enable(...) abort
         let l:verbosity_level = s:verbosity_current_level
     endif
 
-    if has('unix')
-        let l:filepath = '/tmp/'
-    else
-        let l:filepath = 'C:\Temp\'
-    endif
-
-    let &verbosefile = l:filepath . '/vim-verbosity.log'
+    let s:verbosity_current_file = verbosity#getNewFileName()
+    let &verbosefile = s:verbosity_current_file
     let &verbose = l:verbosity_level
 endfunction
 
@@ -49,3 +44,6 @@ function! verbosity#getTemporaryDirectory() abort
     return l:dir_name
 endfunction
 
+function! verbosity#getNewFileName() abort
+    return s:verbosity_log_directory . '/vim-verbosity.log'
+endfunction
