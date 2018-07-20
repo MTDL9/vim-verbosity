@@ -37,6 +37,18 @@ function! verbosity#enable(...) abort
 endfunction
 
 
+" Disable verbose mode
+function! verbosity#disable() abort
+    let &verbose = 0
+    let &verbosefile = ''
+endfunction
+
+
+" Open the current verbosity log file
+function! verbosity#open() abort
+    execute 'edit ' . s:verbosity_current_file
+endfunction
+
 
 function! verbosity#getTemporaryDirectory() abort
     let l:tmp_name = tempname()
