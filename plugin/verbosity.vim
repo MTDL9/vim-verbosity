@@ -2,13 +2,15 @@
 
 " Enable verbose mode printing output on a file
 function! verbosity#enable(...) abort
-    if a:0 > 0
+    if v:count > 0
+        let l:verbosity_level = v:count
+    elseif a:0 > 0
         let l:verbosity_level = a:1
-        let s:verbosity_current_level = l:verbosity_level
     else
         let l:verbosity_level = s:verbosity_current_level
     endif
 
+    let s:verbosity_current_level = l:verbosity_level
     let s:verbosity_current_file = verbosity#getNewFileName()
     let &verbosefile = s:verbosity_current_file
     let &verbose = l:verbosity_level
