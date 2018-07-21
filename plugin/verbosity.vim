@@ -37,7 +37,8 @@ function! verbosity#getTemporaryDirectory() abort
 endfunction
 
 function! verbosity#getNewFileName() abort
-    return s:verbosity_log_directory . '/vim-verbosity.log'
+    let l:date_time = strftime('%Y%m%d-%H%M%S')
+    return s:verbosity_log_directory . '/vim-verbosity-' . l:date_time . '.log'
 endfunction
 
 
