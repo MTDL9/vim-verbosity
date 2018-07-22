@@ -125,10 +125,10 @@ nnoremap <silent> <Plug>(verbosity-open-current-file) :<c-u>call verbosity#openC
 
 " Default key bindings
 "--------------------------------------------------------------------------
-nmap <silent> [oV <Plug>(verbosity-enable)
-nmap <silent> ]oV <Plug>(verbosity-disable)
-nmap <silent> =oV <Plug>(verbosity-toggle)
-nmap <silent> goV <Plug>(verbosity-open-current-file)
+nnoremap <silent> [oV <Plug>(verbosity-enable)
+nnoremap <silent> ]oV <Plug>(verbosity-disable)
+nnoremap <silent> =oV <Plug>(verbosity-toggle)
+nnoremap <silent> goV <Plug>(verbosity-open-current-file)
 
 
 " Commands
