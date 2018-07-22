@@ -42,9 +42,12 @@ function! verbosity#disable() abort
 endfunction
 
 
-" Open the current verbosity log file
-function! verbosity#open() abort
-    execute 'edit ' . s:verbosity_current_file
+function! verbosity#toggle() abort
+    if s:verbosity_enabled is 1
+        call verbosity#disable()
+    else
+        call verbosity#enable()
+    endif
 endfunction
 
 
@@ -68,6 +71,9 @@ function! verbosity#echoMessage(message) abort
 endfunction
 
 
+function! verbosity#openCurrentFile() abort
+    execute 'vsplit ' . s:verbosity_current_file
+endfunction
 
 
 function! verbosity#getDefaultLogLevel() abort
