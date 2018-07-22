@@ -63,8 +63,8 @@ You can overwrite the key mappings using the provided <Plug> maps, for example i
 you do not need the `gV` mapping in Vim you can use:
 
 ```viml
-nnoremap gVe <Plug>(verbosity-enable)
-nnoremap gVd <Plug>(verbosity-disable)
-nnoremap gVt <Plug>(verbosity-toggle)
-nnoremap gVo <Plug>(verbosity-open-current-file)
+nmap gVe <Plug>(verbosity-enable)
+nmap gVd <Plug>(verbosity-disable)
+nmap gVt <Plug>(verbosity-toggle)
+nmap gVo <Plug>(verbosity-open-current-file)
 ```
