@@ -116,15 +116,25 @@ let s:verbosity_log_directory = verbosity#getLogDirectory()
 
 
 " Plug mappings
-nnoremap <unique> <Plug>(verbosity-enable) :<c-u>call verbosity#enable()<CR>
-nnoremap <unique> <Plug>(verbosity-disable) :call verbosity#disable()<CR>
-nnoremap <unique> <Plug>(verbosity-toggle) :<c-u>call verbosity#toggle()<CR>
-nnoremap <unique> <Plug>(verbosity-open-current-file) :<c-u>call verbosity#openCurrentFile()<CR>
+"--------------------------------------------------------------------------
+nnoremap <silent> <Plug>(verbosity-enable) :<c-u>call verbosity#enable()<CR>
+nnoremap <silent> <Plug>(verbosity-disable) :call verbosity#disable()<CR>
+nnoremap <silent> <Plug>(verbosity-toggle) :<c-u>call verbosity#toggle()<CR>
+nnoremap <silent> <Plug>(verbosity-open-current-file) :<c-u>call verbosity#openCurrentFile()<CR>
 
 
 " Default key bindings
-nmap <unique> [oV <Plug>(verbosity-enable)
-nmap <unique> ]oV <Plug>(verbosity-disable)
-nmap <unique> =oV <Plug>(verbosity-toggle)
-nmap <unique> goV <Plug>(verbosity-open-current-file)
+"--------------------------------------------------------------------------
+nmap <silent> [oV <Plug>(verbosity-enable)
+nmap <silent> ]oV <Plug>(verbosity-disable)
+nmap <silent> =oV <Plug>(verbosity-toggle)
+nmap <silent> goV <Plug>(verbosity-open-current-file)
+
+
+" Commands
+"--------------------------------------------------------------------------
+command! VerbosityEnable :call verbosity#enable()<CR>
+command! VerbosityDisable :call verbosity#disable()<CR>
+command! VerbosityToggle :call verbosity#toggle()<CR>
+command! VerbosityOpenCurrentFile :call verbosity#openCurrentFile()<CR>
 
