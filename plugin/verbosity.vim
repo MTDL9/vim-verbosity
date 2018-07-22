@@ -56,7 +56,8 @@ function! verbosity#addTimestamp(label) abort
         return
     endif
 
-    redir >> s:verbosity_current_file
+    let l:black_hole = ''
+    redir => l:black_hole
     silent echo repeat('=', 10) . ' ' . strftime('%F %T') . ' ' .
         \repeat('=', 10) . substitute(' V-E-R-B-O-S-E', '-', '', 'g') .
         \' ' . a:label .
