@@ -74,6 +74,13 @@ endfunction
 
 
 function! verbosity#openCurrentFile() abort
+    if s:verbosity_current_file ==# ''
+        echohl ErrorMsg
+        echo 'No current verbose log file found'
+        echohl None
+        return
+    end
+
     execute 'vsplit ' . s:verbosity_current_file
 endfunction
 
