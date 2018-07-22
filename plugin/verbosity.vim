@@ -6,6 +6,10 @@
 " Functions
 "--------------------------------------------------------------------------
 function! verbosity#enable(...) abort
+    if s:verbosity_enabled is 0
+        call verbosity#addTimestamp(substitute('E-N-D', '-', '', 'g'))
+    endif
+
     if v:count > 0
         let l:verbosity_level = v:count
     elseif a:0 > 0
@@ -18,10 +22,21 @@ function! verbosity#enable(...) abort
     let s:verbosity_current_file = verbosity#getNewFileName()
     let &verbosefile = s:verbosity_current_file
     let &verbose = l:verbosity_level
+    call verbosity#addTimestamp(substitute('S-T-A-R-T', '-', '', 'g'))
+    let s:verbosity_enabled = 1
+    call verbosity#echoMessage('Enabled verbose logging at level ' . l:verbosity_level . ' on file ' . s:verbosity_current_file)
 endfunction
 
 
 function! verbosity#disable() abort
+    let l:verbosity_was_enabled = s:verbosity_enabled
+    let s:verbosity_enabled = 0
+    call verbosity#echoMessage('Disabled verbose logging')
+
+    if l:verbosity_was_enabled is 1
+        call verbosity#addTimestamp(substitute('E-N-D', '-', '', 'g'))
+    endif
+
     let &verbose = 0
     let &verbosefile = ''
 endfunction
@@ -33,15 +48,23 @@ function! verbosity#open() abort
 endfunction
 
 
-function! verbosity#getTemporaryDirectory() abort
-    let l:tmp_name = tempname()
-    let l:dir_name = fnamemodify(l:tmp_name, ':h')
-    return l:dir_name
+function! verbosity#addTimestamp(label) abort
+    if s:verbosity_current_file ==# ''
+        return
+    endif
+
+    redir >> s:verbosity_current_file
+    silent echo repeat('=', 10) . ' ' . strftime('%F %T') . ' ' . 
+        \repeat('=', 10) . substitute(' V-E-R-B-O-S-E ', '-', '', 'g') . s:verbosity_current_level . 
+        \' ' . a:label . ' ' . repeat('=', 10)
+    redir END
 endfunction
 
-function! verbosity#getNewFileName() abort
-    let l:date_time = strftime('%Y%m%d-%H%M%S')
-    return s:verbosity_log_directory . '/vim-verbosity-' . l:date_time . '.log'
+
+function! verbosity#echoMessage(message) abort
+    echohl Label
+    echo a:message
+    echohl None
 endfunction
 
 
