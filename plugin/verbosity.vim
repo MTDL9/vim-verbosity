@@ -57,9 +57,11 @@ function! verbosity#addTimestamp(label) abort
     endif
 
     redir >> s:verbosity_current_file
-    silent echo repeat('=', 10) . ' ' . strftime('%F %T') . ' ' . 
-        \repeat('=', 10) . substitute(' V-E-R-B-O-S-E ', '-', '', 'g') . s:verbosity_current_level . 
-        \' ' . a:label . ' ' . repeat('=', 10)
+    silent echo repeat('=', 10) . ' ' . strftime('%F %T') . ' ' .
+        \repeat('=', 10) . substitute(' V-E-R-B-O-S-E', '-', '', 'g') .
+        \' ' . a:label .
+        \' L' . s:verbosity_current_level .
+        \' ' . repeat('=', 10)
     redir END
 endfunction
 
