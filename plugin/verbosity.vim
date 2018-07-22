@@ -1,6 +1,10 @@
+"--------------------------------------------------------------------------
+" Verbosity
+" VIM Plugin for toggling verbose mode and viewing the output
+"--------------------------------------------------------------------------
 
-
-" Enable verbose mode printing output on a file
+" Functions
+"--------------------------------------------------------------------------
 function! verbosity#enable(...) abort
     if v:count > 0
         let l:verbosity_level = v:count
@@ -17,7 +21,6 @@ function! verbosity#enable(...) abort
 endfunction
 
 
-" Disable verbose mode
 function! verbosity#disable() abort
     let &verbose = 0
     let &verbosefile = ''
@@ -43,24 +46,44 @@ endfunction
 
 
 
-" Variable definitions
-let s:verbosity_current_level = 9
-let s:verbosity_current_file = ''
-let s:verbosity_log_directory = ''
 
-if exists('g:verbosity_default_level')
-    let s:verbosity_current_level = g:verbosity_default_level
-endif
-
-if exists('g:verbosity_log_directory')
-    let s:verbosity_log_directory = g:verbosity_log_directory
-
-    if !isdirectory(s:verbosity_log_directory)
-        call mkdir(s:verbosity_log_directory, 'p', 0700)
+function! verbosity#getDefaultLogLevel() abort
+    if exists('g:verbosity_default_level')
+        return g:verbosity_default_level
     endif
-else
-    let s:verbosity_log_directory = verbosity#getTemporaryDirectory()
-endif
+
+    return 10
+endfunction
+
+
+function! verbosity#getLogDirectory() abort
+    if exists('g:verbosity_log_directory')
+        let l:dir_path = g:verbosity_log_directory
+
+        if !isdirectory(l:dir_path)
+            call mkdir(l:dir_path, 'p', 0700)
+        endif
+    else
+        let l:tmp_name = tempname()
+        let l:dir_path = fnamemodify(l:tmp_name, ':h')
+    endif
+
+    return l:dir_path
+endfunction
+
+
+function! verbosity#getNewFileName() abort
+    let l:date_time = strftime('%Y%m%d-%H%M%S')
+    return s:verbosity_log_directory . '/vim-verbosity-' . l:date_time . '.log'
+endfunction
+
+
+" Variable definitions
+"--------------------------------------------------------------------------
+let s:verbosity_enabled = 0
+let s:verbosity_current_level = verbosity#getDefaultLogLevel()
+let s:verbosity_current_file = ''
+let s:verbosity_log_directory = verbosity#getLogDirectory()
 
 
 " Plug mappings
