@@ -59,7 +59,7 @@ that with the following variable:
 let g:verbosity_default_level = 5
 ```
 
-You can overwrite the key mappings using the provided <Plug> maps, for example if 
+You can overwrite the key mappings using the provided \<Plug\> maps, for example if
 you do not need the `gV` mapping in Vim you can use:
 
 ```viml
