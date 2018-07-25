@@ -7,15 +7,15 @@ directory.
 This is especially useful for debugging just a few actions or auto commands 
 while working inside the editor.
 
-The default mappings (following the style of
+The default mappings (inspired by the style of
 [Unimpaired](https://github.com/tpope/vim-unimpaired)) and commands are:
 
-| Mapping | Command                     | Description                                      |
-|---------|-----------------------------|--------------------------------------------------|
-| `[oV`   | `:VerbosityEnable`          | Enables verbose mode                             |
-| `]oV`   | `:VerbosityDisable`         | Disables verbose mode                            |
-| `=oV`   | `:VerbosityToggle`          | Toggles verbose mode                             |
-| `goV`   | `:VerbosityOpenCurrentFile` | Opens current verbose output in a vertical split |
+| Mapping | Command              | Description                                           |
+|---------|----------------------|-------------------------------------------------------|
+| `[oV`   | `:VerbosityEnable`   | Enables verbose mode                                  |
+| `]oV`   | `:VerbosityDisable`  | Disables verbose mode                                 |
+| `=oV`   | `:VerbosityToggle`   | Toggles verbose mode                                  |
+| `goV`   | `:VerbosityOpenLast` | Opens last/current verbose output in a vertical split |
 
 Enable and toggle mappings can be prefixed with a number (e.g. `12[oV`) to set
 a specific verbose level. This level will be treated as the new default level
@@ -66,5 +66,5 @@ you do not need the `gV` mapping in Vim you can use:
 nmap gVe <Plug>(verbosity-enable)
 nmap gVd <Plug>(verbosity-disable)
 nmap gVt <Plug>(verbosity-toggle)
-nmap gVo <Plug>(verbosity-open-current-file)
+nmap gVo <Plug>(verbosity-open-last)
 ```
