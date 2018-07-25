@@ -143,8 +143,8 @@ nmap <silent> goV <Plug>(verbosity-open-last)
 
 " Commands
 "--------------------------------------------------------------------------
-command! VerbosityEnable :call verbosity#enable()<CR>
-command! VerbosityDisable :call verbosity#disable()<CR>
-command! VerbosityToggle :call verbosity#toggle()<CR>
-command! VerbosityOpenLast :call verbosity#openLastFile()<CR>
+command! VerbosityEnable :call verbosity#enable()
+command! VerbosityDisable :call verbosity#disable()
+command! VerbosityToggle :call verbosity#toggle()
+command! VerbosityOpenLast :call verbosity#openLastFile()
 
