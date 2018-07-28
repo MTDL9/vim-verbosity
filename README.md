@@ -10,12 +10,13 @@ while working inside the editor.
 The default mappings (inspired by the style of
 [Unimpaired](https://github.com/tpope/vim-unimpaired)) and commands are:
 
-| Mapping | Command              | Description                                           |
-|---------|----------------------|-------------------------------------------------------|
-| `[oV`   | `:VerbosityEnable`   | Enables verbose mode                                  |
-| `]oV`   | `:VerbosityDisable`  | Disables verbose mode                                 |
-| `=oV`   | `:VerbosityToggle`   | Toggles verbose mode                                  |
-| `goV`   | `:VerbosityOpenLast` | Opens last/current verbose output in a vertical split |
+| Mapping | Command               | Description                                           |
+|---------|-----------------------|-------------------------------------------------------|
+| `[oV`   | `:VerbosityEnable`    | Enables verbose mode                                  |
+| `]oV`   | `:VerbosityDisable`   | Disables verbose mode                                 |
+| `=oV`   | `:VerbosityToggle`    | Toggles verbose mode                                  |
+| `goV`   | `:VerbosityOpenLast`  | Opens last/current verbose output in a vertical split |
+| `doV`   | `:VerbosityDeleteAll` | Deletes all Verbosity generated log files             |
 
 Enable and toggle mappings can be prefixed with a number (e.g. `12[oV`) to set
 a specific verbose level. This level will be treated as the new default level
@@ -67,4 +68,5 @@ nmap gVe <Plug>(verbosity-enable)
 nmap gVd <Plug>(verbosity-disable)
 nmap gVt <Plug>(verbosity-toggle)
 nmap gVo <Plug>(verbosity-open-last)
+nmap gVd <Plug>(verbosity-delete-all)
 ```
