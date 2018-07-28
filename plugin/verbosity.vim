@@ -74,7 +74,7 @@ function! verbosity#echoMessage(message) abort
 endfunction
 
 
-function! verbosity#openLastFile() abort
+function! verbosity#openLastLog() abort
     if s:verbosity_current_file ==# ''
         echohl ErrorMsg
         echo 'No current verbose log file found'
@@ -130,7 +130,8 @@ let s:verbosity_log_directory = verbosity#getLogDirectory()
 nnoremap <silent> <Plug>(verbosity-enable) :<c-u>call verbosity#enable()<CR>
 nnoremap <silent> <Plug>(verbosity-disable) :call verbosity#disable()<CR>
 nnoremap <silent> <Plug>(verbosity-toggle) :<c-u>call verbosity#toggle()<CR>
-nnoremap <silent> <Plug>(verbosity-open-last) :<c-u>call verbosity#openLastFile()<CR>
+nnoremap <silent> <Plug>(verbosity-open-last) :<c-u>call verbosity#openLastLog()<CR>
+nnoremap <silent> <Plug>(verbosity-delete-all) :<c-u>call verbosity#deleteAllLogs()<CR>
 
 
 " Default key bindings
@@ -146,5 +147,6 @@ nmap <silent> goV <Plug>(verbosity-open-last)
 command! VerbosityEnable :call verbosity#enable()
 command! VerbosityDisable :call verbosity#disable()
 command! VerbosityToggle :call verbosity#toggle()
-command! VerbosityOpenLast :call verbosity#openLastFile()
+command! VerbosityOpenLast :call verbosity#openLastLog()
+command! VerbosityDeleteAll :call verbosity#deleteAllLogs()
 
