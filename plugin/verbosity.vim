@@ -117,6 +117,17 @@ function! verbosity#getNewFileName() abort
 endfunction
 
 
+function! verbosity#deleteAllLogs() abort
+    let l:log_files = split(globpath(s:verbosity_log_directory, 'vim-verbosity-*.log'), '\n')
+
+    for l:log_file in l:log_files
+        call delete(l:log_file)
+    endfor
+
+    call verbosity#echoMessage('Deleted ' . len(l:log_files) . ' verbosity file(s)')
+endfunction
+
+
 " Variable definitions
 "--------------------------------------------------------------------------
 let s:verbosity_enabled = 0
@@ -140,6 +151,7 @@ nmap <silent> [oV <Plug>(verbosity-enable)
 nmap <silent> ]oV <Plug>(verbosity-disable)
 nmap <silent> =oV <Plug>(verbosity-toggle)
 nmap <silent> goV <Plug>(verbosity-open-last)
+nmap <silent> doV <Plug>(verbosity-delete-all)
 
 
 " Commands
