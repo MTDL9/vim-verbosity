@@ -12,7 +12,7 @@ function! verbosity#enable(...) abort
 
     if v:count > 0
         let l:verbosity_level = v:count
-    elseif a:0 > 0
+    elseif a:0 > 0 && a:1 > 0
         let l:verbosity_level = a:1
     else
         let l:verbosity_level = s:verbosity_current_level
@@ -42,11 +42,17 @@ function! verbosity#disable() abort
 endfunction
 
 
-function! verbosity#toggle() abort
+function! verbosity#toggle(...) abort
+    if a:0 > 0
+        let l:verbosity_level = a:1
+    else
+        let l:verbosity_level = 0
+    endif
+
     if s:verbosity_enabled is 1
         call verbosity#disable()
     else
-        call verbosity#enable()
+        call verbosity#enable(l:verbosity_level)
     endif
 endfunction
 
@@ -141,8 +147,8 @@ let s:verbosity_log_directory = verbosity#getLogDirectory()
 nnoremap <silent> <Plug>(verbosity-enable) :<c-u>call verbosity#enable()<CR>
 nnoremap <silent> <Plug>(verbosity-disable) :call verbosity#disable()<CR>
 nnoremap <silent> <Plug>(verbosity-toggle) :<c-u>call verbosity#toggle()<CR>
-nnoremap <silent> <Plug>(verbosity-open-last) :<c-u>call verbosity#openLastLog()<CR>
-nnoremap <silent> <Plug>(verbosity-delete-all) :<c-u>call verbosity#deleteAllLogs()<CR>
+nnoremap <silent> <Plug>(verbosity-open-last) :call verbosity#openLastLog()<CR>
+nnoremap <silent> <Plug>(verbosity-delete-all) :call verbosity#deleteAllLogs()<CR>
 
 
 " Default key bindings
@@ -156,9 +162,9 @@ nmap <silent> doV <Plug>(verbosity-delete-all)
 
 " Commands
 "--------------------------------------------------------------------------
-command! VerbosityEnable :call verbosity#enable()
-command! VerbosityDisable :call verbosity#disable()
-command! VerbosityToggle :call verbosity#toggle()
+command! -count=0 VerbosityEnable :call verbosity#enable(<count>)
+command! -count=0 VerbosityDisable :call verbosity#disable()
+command! -count=0 VerbosityToggle :call verbosity#toggle(<count>)
 command! VerbosityOpenLast :call verbosity#openLastLog()
 command! VerbosityDeleteAll :call verbosity#deleteAllLogs()
 
