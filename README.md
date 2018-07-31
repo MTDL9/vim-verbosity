@@ -18,9 +18,10 @@ The default mappings (inspired by the style of
 | `goV`   | `:VerbosityOpenLast`  | Opens last/current verbose output in a vertical split |
 | `doV`   | `:VerbosityDeleteAll` | Deletes all Verbosity generated log files             |
 
-Enable and toggle mappings can be prefixed with a number (e.g. `12[oV`) to set
-a specific verbose level. This level will be treated as the new default level
-for the rest of the session.
+Enable and toggle mappings and commands can be prefixed with a number (e.g.
+`12[oV` or `:3VerbosityEnable`) to set a specific verbose level. 
+This level will be treated as the new default level for the rest of the
+session.
 
 
 ## Installation
