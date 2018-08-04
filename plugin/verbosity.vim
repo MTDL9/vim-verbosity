@@ -134,6 +134,23 @@ function! verbosity#deleteAllLogs() abort
 endfunction
 
 
+" Custom sytnax highlighting
+"--------------------------------------------------------------------------
+function! verbosity#applySyntaxHighlighting() abort
+    " Headers
+    syn match VerbosityHeader /\v^\={10} [0-9-]+ [0-9:]+ \={10} \w+ \w+ L\d+ \={10}/ contains=VerbosityHeaderBlock,VerbosityTimestamp,VerbosityStartMessage,VerbosityEndMessage
+    syn match VerbosityHeaderBlock contained /\v\={10}/
+    syn match VerbosityTimestamp contained /\v[0-9-]+ [0-9:]+/
+    syn match VerbosityStartMessage contained /\vV[E]R[B]O[S]E [S]T[A]R[T] L\d+/
+    syn match VerbosityEndMessage contained /\vV[E]R[B]O[S]E [E]N[D] L\d+/
+
+    hi def link VerbosityHeaderBlock Comment
+    hi def link VerbosityTimestamp Label
+    hi def link VerbosityStartMessage DiffAdded
+    hi def link VerbosityEndMessage DiffRemoved
+endfunction
+
+
 " Variable definitions
 "--------------------------------------------------------------------------
 let s:verbosity_enabled = 0
@@ -168,3 +185,10 @@ command! -count=0 VerbosityToggle :call verbosity#toggle(<count>)
 command! VerbosityOpenLast :call verbosity#openLastLog()
 command! VerbosityDeleteAll :call verbosity#deleteAllLogs()
 
+
+" Autocommands
+"--------------------------------------------------------------------------
+augroup verbosity
+    au!
+    au BufNewFile,BufRead vim-verbosity-*.log call verbosity#applySyntaxHighlighting()
+augroup end
