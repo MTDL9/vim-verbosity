@@ -134,7 +134,7 @@ function! verbosity#deleteAllLogs() abort
 endfunction
 
 
-" Custom sytnax highlighting
+" Custom syntax highlighting
 "--------------------------------------------------------------------------
 function! verbosity#applySyntaxHighlighting() abort
     " Headers
@@ -153,11 +153,18 @@ function! verbosity#applySyntaxHighlighting() abort
     syn match VerbosityAuto /\v^a[u]t[o]c[o]m[m]a[n]d /
     syn match VerbosityAutoName contained /\v[gn] \w+ A/ms=s+2,me=e-2
 
+    " Functions
+    syn match VerbosityFunctionLine /\v^(c[a]l[l]i[n]g|c[o]n[t]i[n]u[i]n[g] in) [f]u[n]c[t]i[o]n .+$/ contains=VerbosityFunctionName,VerbosityString,VerbosityHashNumber
+    syn match VerbosityFunctionReturnLine /\v^f[u]n[c]t[i]o[n] [^ ]+ r[e]t[u]r[n]i[n]g .+$/ contains=VerbosityFunctionName,VerbosityString,VerbosityHashNumber
+    syn match VerbosityFunctionName contained /\vo[n] [^ (]+/ms=s+3
+    syn match VerbosityFunctionCounter /\v^l[i]n[e] \d+:/
+
     " Errors
     syn match VerbosityError /\v^E\d+: .+$/
 
-    " Strings
-    syn match VerbosityString contained /\v("[^"]*"|'[^']')/
+    " Constants
+    syn match VerbosityString contained /\v("[^"]*"|'[^']*')/
+    syn match VerbosityHashNumber contained /\v#\d+/
 
     " Highlight group links
     hi def link VerbosityHeaderBlock Comment
@@ -167,10 +174,15 @@ function! verbosity#applySyntaxHighlighting() abort
     hi def link VerbosityStartEcho DiffAdded
     hi def link VerbosityEndEcho DiffRemoved
     hi def link VerbosityExecuteLine Title
-    hi def link VerbosityAuto Identifier
-    hi def link VerbosityAutoName Identifier
-    hi def link VerbosityString String
+    hi def link VerbosityAuto Keyword
+    hi def link VerbosityAutoName Keyword
+    hi def link VerbosityFunctionLine Title
+    hi def link VerbosityFunctionReturnLine Title
+    hi def link VerbosityFunctionName Identifier
+    hi def link VerbosityFunctionCounter Comment
     hi def link VerbosityError ErrorMsg
+    hi def link VerbosityString String
+    hi def link VerbosityHashNumber Number
 endfunction
 
 
