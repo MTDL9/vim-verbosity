@@ -144,10 +144,17 @@ function! verbosity#applySyntaxHighlighting() abort
     syn match VerbosityStartMessage contained /\vV[E]R[B]O[S]E [S]T[A]R[T] L\d+/
     syn match VerbosityEndMessage contained /\vV[E]R[B]O[S]E [E]N[D] L\d+/
 
+    " Enable/Disable echos
+    syn match VerbosityStartEcho /\v^E[n]a[b]l[e]d [v]e[r]b[o]s[e] logging at.+$/
+    syn match VerbosityEndEcho /\v^D[i]s[a]b[l]e[d] [v]e[r]b[o]s[e] logging$/
+
+    " Highlight group links
     hi def link VerbosityHeaderBlock Comment
     hi def link VerbosityTimestamp Label
     hi def link VerbosityStartMessage DiffAdded
     hi def link VerbosityEndMessage DiffRemoved
+    hi def link VerbosityStartEcho DiffAdded
+    hi def link VerbosityEndEcho DiffRemoved
 endfunction
 
 
