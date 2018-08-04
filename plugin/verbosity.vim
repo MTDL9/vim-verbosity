@@ -149,10 +149,15 @@ function! verbosity#applySyntaxHighlighting() abort
     syn match VerbosityEndEcho /\v^D[i]s[a]b[l]e[d] [v]e[r]b[o]s[e] logging$/
 
     " Auto commands
-    syn match VerbosityExecuteLine /\v^E[x]e[c]u[t]i[n]g \w+ A[u]t[o] commands for "[^"]*"$/ contains=VerbosityAutoName,VerbosityAutoString
+    syn match VerbosityExecuteLine /\v^(E[x]e[c]u[t]i[n]g|c[o]n[t]i[n]u[i]n[g] in) \w+ A[u]t[o] commands for "[^"]*"$/ contains=VerbosityAutoName,VerbosityString
     syn match VerbosityAuto /\v^a[u]t[o]c[o]m[m]a[n]d /
-    syn match VerbosityAutoName contained /\vg \w+ A/ms=s+2,me=e-2
-    syn match VerbosityAutoString contained /\v"[^"]*"/
+    syn match VerbosityAutoName contained /\v[gn] \w+ A/ms=s+2,me=e-2
+
+    " Errors
+    syn match VerbosityError /\v^E\d+: .+$/
+
+    " Strings
+    syn match VerbosityString contained /\v("[^"]*"|'[^']')/
 
     " Highlight group links
     hi def link VerbosityHeaderBlock Comment
@@ -161,10 +166,11 @@ function! verbosity#applySyntaxHighlighting() abort
     hi def link VerbosityEndMessage DiffRemoved
     hi def link VerbosityStartEcho DiffAdded
     hi def link VerbosityEndEcho DiffRemoved
-    hi def link VerbosityExecuteLine Label
+    hi def link VerbosityExecuteLine Title
     hi def link VerbosityAuto Identifier
     hi def link VerbosityAutoName Identifier
-    hi def link VerbosityAutoString String
+    hi def link VerbosityString String
+    hi def link VerbosityError ErrorMsg
 endfunction
 
 
