@@ -8,3 +8,24 @@
                                          /____/    ~
 
 ==============================================================================
+CONTENTS                                                    *verbosity-contents*
+
+    Introduction ....................... |verbosity-introduction|
+    Usage .............................. |verbosity-usage|
+    Configuration ...................... |verbosity-configuration|
+    License ............................ |verbosity-license|
+
+==============================================================================
+INTRODUCTION                                  *verbosity* *verbosity-introduction*
+
+Provides mappings and commands for easily enabling verbose mode while working
+in VIM, printing the verbose output on newly created log files in a temporary 
+directory. 
+
+This is especially useful for debugging just a few actions or auto commands 
+while working inside the editor.
+
+
+
+==============================================================================
+vim:tw=78:sw=4:ts=8:ft=help:
