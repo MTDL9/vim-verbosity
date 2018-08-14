@@ -25,6 +25,28 @@ directory.
 This is especially useful for debugging just a few actions or auto commands 
 while working inside the editor.
 
+Custom syntax highlighting has been added to Verbosity generated files to show
+more clearly the different types of actions logged by VIM (functions, auto
+commands, etc.)
+
+==============================================================================
+USAGE                    *verbosity-usage* *verbosity-mappings* *verbosity-commands*
+
+The default mappings and commands set by Verbosity are:
+
+Mapping | Command             | Description                                  ~
+--------|---------------------|-----------------------------------------------~
+*[oV*     | *:VerbosityEnable*    | Enables verbose mode
+*]oV*     | *:VerbosityDisable*   | Disables verbose mode
+*=oV*     | *:VerbosityToggle*    | Toggles verbose mode
+*goV*     | *:VerbosityOpenLast*  | Opens last/current verbose output
+*doV*     | *:VerbosityDeleteAll* | Deletes all Verbosity generated log files
+
+Enable and toggle mappings and commands can be prefixed with a number (e.g.
+`12[oV` or `:3VerbosityEnable`) to set a specific verbose level. 
+This level will be treated as the new default level for the rest of the
+session.
+
 ==============================================================================
 LICENSE                                                      *verbosity-license*
 
