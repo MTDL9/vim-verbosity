@@ -69,5 +69,5 @@ nmap gVe <Plug>(verbosity-enable)
 nmap gVd <Plug>(verbosity-disable)
 nmap gVt <Plug>(verbosity-toggle)
 nmap gVo <Plug>(verbosity-open-last)
-nmap gVd <Plug>(verbosity-delete-all)
+nmap gVr <Plug>(verbosity-delete-all)
 ```
