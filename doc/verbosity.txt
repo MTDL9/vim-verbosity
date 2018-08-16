@@ -50,6 +50,7 @@ session.
 ==============================================================================
 CONFIGURATION                                          *verbosity-configuration*
 
+*g:verbosity_log_directory*
 By default Verbosity will create verbose log files inside a temporary
 directory, created using the |tempname()| VIM function.
 If you want to write the files in a specific directory, you can customize the
@@ -58,13 +59,15 @@ following variable:
   let g:verbosity_log_directory = '/tmp'
 <
 
+*g:verbosity_default_level*
 The default verbose level used if none is specified is 10, you can overwrite
 that with the following variable:
 >
   let g:verbosity_default_level = 5
 <
 
-You can overwrite the key mappings using the provided \<Plug\> maps, for
+*verbosity-plug-mappings*
+You can overwrite the key mappings using the provided <Plug> maps, for
 example if you do not need the |gV| mapping in Vim you can use:
 >
   nmap gVe <Plug>(verbosity-enable)
